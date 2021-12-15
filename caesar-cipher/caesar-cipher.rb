@@ -8,9 +8,9 @@ def cipher(string, shift)
     string.split("").each do |char|
         new_ord = char.ord + shift
 
-        if char.ord >= 97 && char.ord <= 122
+        if char.ord.between?(97, 122)
             ciphered_string += cipher_bound(new_ord, 97, 122)
-        elsif char.ord >= 65 && char.ord <= 90
+        elsif char.ord.between?(65, 90)
             ciphered_string += cipher_bound(new_ord, 65, 90)
         else
             ciphered_string += char
@@ -20,7 +20,7 @@ def cipher(string, shift)
 end
 
 def cipher_bound(char_ord, lower, upper)
-    until char_ord >= lower && char_ord <= upper
+    until char_ord.between?(lower, upper)
         if char_ord < lower
             char_ord += 26
         else
